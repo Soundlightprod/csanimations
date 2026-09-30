@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fine Allies — CS Animations</title>
+<meta name="description" content="The Fine Allies, l'alliance de sept musiciens et d'une chanteuse pour un spectacle Funk, Soul et Rhythm'n'Blues. Accompagné par CS Animations en Dordogne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #fff8ee; --paper: #ffffff;
+    --ink: #2b2013; --ink-soft: #55432c;
+    --coral: #ff6b4a; --coral-dark: #e34e2e;
+    --sun: #ffc23c; --teal: #1f9d8f; --teal-dark: #157b70;
+    --muted: #8a7c68; --line: rgba(43,32,19,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--cream); color:var(--ink); font-family:'Nunito Sans', sans-serif; line-height:1.65; overflow-x:hidden;}
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;} }
+  .label{font-size:0.8rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--coral-dark);}
+  h1,h2,h3{font-family:'Fredoka', sans-serif; font-weight:600; letter-spacing:-0.01em; color:var(--ink); line-height:1.08;}
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(255,248,238,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand img{height:40px; width:40px; display:block; border-radius:50%; object-fit:cover; box-shadow:0 0 0 3px var(--paper), 0 0 0 4px var(--line);}
+  .brand span{font-family:'Fredoka', sans-serif; font-size:1.3rem; font-weight:600; color:var(--ink);}
+  nav ul{list-style:none; display:flex; gap:24px; flex-wrap:wrap;}
+  nav a{color:var(--ink-soft); text-decoration:none; font-size:0.9rem; font-weight:700; transition:color 0.2s ease;}
+  nav a:hover, nav a.current{color:var(--coral-dark);}
+  @media (max-width:900px){ nav ul{display:none;} }
+
+  .page-hero{position:relative; padding:80px 24px 60px; text-align:center; overflow:hidden;
+    background:linear-gradient(135deg, var(--teal) 0%, #35b6a6 45%, var(--sun) 100%);
+  }
+  .page-hero::before{
+    content:""; position:absolute; inset:0; opacity:0.5; pointer-events:none;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.55) 3px, transparent 3px), radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
+    background-size: 60px 60px, 34px 34px; background-position: 0 0, 20px 30px;
+  }
+  .page-hero-inner{position:relative; z-index:2; max-width:720px; margin:0 auto;}
+  .page-hero .label{display:block; margin-bottom:18px; color:#fff;}
+  .band-logo{max-width:200px; width:100%; height:auto; margin:0 auto 22px; display:block; border-radius:50%; box-shadow:0 12px 30px rgba(0,0,0,0.15);}
+  .page-hero p{color:#fff; font-size:1.05rem; max-width:540px; margin:0 auto 30px; font-weight:600;}
+  .wave{display:block; width:100%; height:60px; margin-top:-2px;}
+
+  .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:15px 30px; font-family:'Nunito Sans', sans-serif; font-weight:800; font-size:0.92rem; text-decoration:none; border-radius:100px; transition:all 0.22s ease;}
+  .btn-primary{background:var(--ink); color:#fff; box-shadow:0 8px 24px rgba(43,32,19,0.2);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{color:#fff; box-shadow:inset 0 0 0 2.5px rgba(255,255,255,0.7);}
+  .btn-ghost:hover{box-shadow:inset 0 0 0 2.5px #fff;}
+
+  section{position:relative; z-index:2;}
+  .wrap{max-width:1180px; margin:0 auto; padding:80px 24px;}
+  .wrap.tight{padding-top:50px; padding-bottom:50px;}
+  .section-head{max-width:680px; margin-bottom:40px;}
+  .section-head .label{margin-bottom:12px; display:block;}
+  .section-head h2{font-size:clamp(1.8rem, 4vw, 2.4rem);}
+  .prose{color:var(--ink); font-size:1rem; max-width:680px;}
+  .prose p{margin-bottom:16px;}
+  .prose p:last-child{margin-bottom:0;}
+
+  .video-wrap{position:relative; width:100%; max-width:800px; margin:0 auto; padding-top:56.25%; border-radius:24px; overflow:hidden; background:var(--paper); box-shadow:0 20px 50px rgba(43,32,19,0.1);}
+  .video-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+
+  .tags{display:flex; flex-wrap:wrap; gap:10px;}
+  .tag{font-weight:700; font-size:0.85rem; color:var(--teal-dark); background:var(--paper); border:1.5px solid var(--teal); padding:9px 18px; border-radius:20px;}
+
+  .info-strip{background:var(--ink); color:var(--cream); border-radius:32px; margin:0 24px 90px; max-width:1132px; margin-left:auto; margin-right:auto;}
+  .info-strip .wrap{padding:56px 40px;}
+  .info-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:28px;}
+  .info-item{display:flex; gap:14px; align-items:flex-start;}
+  .info-item .mark{color:var(--sun); font-weight:800; flex-shrink:0; font-size:1.1rem;}
+  .info-item p{font-size:0.94rem; opacity:0.92;}
+
+  .cta-band{text-align:center; color:#fff; position:relative; overflow:hidden; background:linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);}
+  .cta-band::before{content:""; position:absolute; inset:0; opacity:0.4; pointer-events:none; background-image: radial-gradient(circle, rgba(255,255,255,0.4) 3px, transparent 3px); background-size: 50px 50px;}
+  .cta-band .wrap{position:relative; z-index:2;}
+  .cta-band h2{color:#fff; font-size:clamp(2rem, 5vw, 3rem); margin-bottom:16px;}
+  .cta-band p{margin-bottom:30px; font-weight:600;}
+  .cta-band .btn-primary{background:#fff; color:var(--coral-dark); box-shadow:0 8px 24px rgba(0,0,0,0.15);}
+  .cta-band .btn-primary:hover{background:var(--sun); color:var(--ink);}
+
+  footer{border-top:1px solid var(--line); padding:54px 24px 34px;}
+  .footer-wrap{max-width:1180px; margin:0 auto; display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between;}
+  .footer-brand{max-width:320px;}
+  .footer-brand .brand{margin-bottom:12px;}
+  .footer-brand p{color:var(--muted); font-size:0.85rem;}
+  .footer-col h4{font-weight:800; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--coral-dark); margin-bottom:14px;}
+  .footer-col a{display:block; color:var(--muted); text-decoration:none; font-size:0.9rem; margin-bottom:8px; transition:color 0.2s ease;}
+  .footer-col a:hover{color:var(--ink);}
+  .legal{max-width:1180px; margin:40px auto 0; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:0.78rem; text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand">
+      <img src="logo-mark.png" alt="Logo CS Animations">
+      <span>CS Animations</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="the-fine-allies.html" class="current">The Fine Allies</a></li>
+        <li>
+      <a href="alchimie.html">Alchimie</a></li>
+        <li><a href="location-materiel.html">Location Matériel</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="label">Groupe accompagné · Funk · Soul · Rhythm'n'Blues</span>
+    <img src="fine-allies-logo.png" alt="The Fine Allies" class="band-logo">
+    <h1 class="sr-only">The Fine Allies</h1>
+    <p>L'alliance de sept musiciens et d'une chanteuse, réunis pour un spectacle rythmé et chaleureux, plein de groove.</p>
+    <div class="cta-row">
+      <a href="mailto:contact@csanimations.fr" class="btn btn-primary">Réserver le groupe</a>
+      <a href="mailto:the.fine.allies@gmail.com" class="btn btn-ghost">Contact du groupe</a>
+    </div>
+  </div>
+</section>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="#fff8ee" d="M0,28 C240,60 480,0 720,20 C960,40 1200,60 1440,28 L1440,60 L0,60 Z"/></svg>
+
+<section>
+  <div class="wrap tight">
+    <div class="section-head">
+      <span class="label">Le groupe</span>
+      <h2>Du groove, avant tout</h2>
+    </div>
+    <div class="prose">
+      <p>Initié par deux de ses membres, The Fine Allies s'est construit autour de musiciens inspirés par la volonté de jouer la musique qui les fait vibrer : le funk, la soul et le rhythm'n'blues. Cette « fine alliance » revisite ses inspirations avec des touches jazz, reggae et smooth rock.</p>
+      <p>Le groove de la section rythmique, l'éclat des cuivres et la flamboyance d'une voix inspirée : un concert plein de peps et de générosité, présent dans de nombreux festivals de la région comme les 24 Heures du Swing de Monségur ou le Festival Jazz Pourpre de Bergerac.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap tight">
+    <div class="section-head">
+      <span class="label">Vidéo</span>
+      <h2>The Fine Allies en concert</h2>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/n9HTD-GbLLE" title="The Fine Allies en concert" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap tight">
+    <div class="section-head">
+      <span class="label">Répertoire</span>
+      <h2>De James Brown à Jamiroquai</h2>
+    </div>
+    <div class="tags">
+      <span class="tag">James Brown</span>
+      <span class="tag">Jamiroquai</span>
+      <span class="tag">Stevie Wonder</span>
+      <span class="tag">Amy Winehouse</span>
+      <span class="tag">Sharon Jones</span>
+      <span class="tag">Tower of Power</span>
+      <span class="tag">Wilson Pickett</span>
+    </div>
+  </div>
+</section>
+
+<section class="info-strip">
+  <div class="wrap">
+    <div class="info-grid">
+      <div class="info-item"><span class="mark">✦</span><p>Huit artistes sur scène : section rythmique, cuivres et chant</p></div>
+      <div class="info-item"><span class="mark">✦</span><p>Festivals, mariages, soirées privées et entreprises</p></div>
+      <div class="info-item"><span class="mark">✦</span><p>Un spectacle dynamique, taillé pour faire danser</p></div>
+      <div class="info-item"><span class="mark">✦</span><p>Réservation et logistique gérées avec CS Animations</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap tight">
+    <span class="label" style="color:#fff;">Envie de les programmer ?</span>
+    <h2>Réservez The Fine Allies<br>pour votre événement</h2>
+    <p>On s'occupe de la mise en relation et de la logistique.</p>
+    <div class="cta-row">
+      <a href="mailto:contact@csanimations.fr" class="btn btn-primary">contact@csanimations.fr</a>
+      <a href="tel:+33631949653" class="btn btn-ghost">06 31 94 96 53</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <a href="index.html" class="brand">
+        <img src="logo-mark.png" alt="Logo CS Animations">
+        <span>CS Animations</span>
+      </a>
+      <p>Au service des groupes et artistes locaux en Dordogne. Association loi 1901 basée à Prigonrieux.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="alchimie.html">Alchimie</a>
+      <a href="location-materiel.html">Location Matériel</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Suivez-nous</h4>
+      <a href="https://www.facebook.com/profile.php?id=61550186392959" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/csanimations24/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:contact@csanimations.fr">contact@csanimations.fr</a>
+      <a href="tel:+33631949653">06 31 94 96 53</a>
+    </div>
+  </div>
+  <p class="legal">Association loi 1901 · RNA W241006994 · SIRET 930 390 935 00011 · 24130 Prigonrieux — © 2026 CS Animations</p>
+</footer>
+
+<script>
+(function(){
+  var sid=null; try{ sid=sessionStorage.getItem('csa_visit_sid'); if(!sid){ sid=Date.now().toString(36)+Math.random().toString(36).slice(2); sessionStorage.setItem('csa_visit_sid',sid); } }catch(e){}
+  fetch("https://slp-api.raspy-silence-d4c7.workers.dev/api/track-visit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({artist_slug:"the-fine-allies",session_id:sid,site:"csa",ref:document.referrer})}).catch(function(){});
+})();
+</script>
+</body>
+</html>

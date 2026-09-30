@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — CS Animations</title>
+<meta name="description" content="Contactez CS Animations pour programmer un groupe ou louer du matériel son et lumière en Dordogne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #fff8ee; --paper: #ffffff;
+    --ink: #2b2013; --ink-soft: #55432c;
+    --coral: #ff6b4a; --coral-dark: #e34e2e;
+    --sun: #ffc23c; --teal: #1f9d8f; --teal-dark: #157b70;
+    --muted: #8a7c68; --line: rgba(43,32,19,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--cream); color:var(--ink); font-family:'Nunito Sans', sans-serif; line-height:1.65; overflow-x:hidden;}
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;} }
+  .label{font-size:0.8rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--coral-dark);}
+  h1,h2,h3{font-family:'Fredoka', sans-serif; font-weight:600; letter-spacing:-0.01em; color:var(--ink); line-height:1.08;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(255,248,238,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand img{height:40px; width:40px; display:block; border-radius:50%; object-fit:cover; box-shadow:0 0 0 3px var(--paper), 0 0 0 4px var(--line);}
+  .brand span{font-family:'Fredoka', sans-serif; font-size:1.3rem; font-weight:600; color:var(--ink);}
+  nav ul{list-style:none; display:flex; gap:24px; flex-wrap:wrap;}
+  nav a{color:var(--ink-soft); text-decoration:none; font-size:0.9rem; font-weight:700; transition:color 0.2s ease;}
+  nav a:hover, nav a.current{color:var(--coral-dark);}
+  @media (max-width:900px){ nav ul{display:none;} }
+
+  .page-hero{position:relative; padding:80px 24px 60px; text-align:center; overflow:hidden;
+    background:linear-gradient(135deg, var(--teal) 0%, #35b6a6 45%, var(--sun) 100%);
+  }
+  .page-hero::before{
+    content:""; position:absolute; inset:0; opacity:0.5; pointer-events:none;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.55) 3px, transparent 3px), radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2px);
+    background-size: 60px 60px, 34px 34px; background-position: 0 0, 20px 30px;
+  }
+  .page-hero-inner{position:relative; z-index:2; max-width:640px; margin:0 auto;}
+  .page-hero .label{display:block; margin-bottom:16px; color:#fff;}
+  .page-hero h1{font-size:clamp(2.2rem, 5.5vw, 3.4rem); margin-bottom:16px; color:#fff; text-shadow:0 4px 24px rgba(0,0,0,0.12);}
+  .page-hero p{color:#fff; font-size:1.05rem; max-width:520px; margin:0 auto; font-weight:600;}
+  .wave{display:block; width:100%; height:60px; margin-top:-2px;}
+
+  section{position:relative; z-index:2;}
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 100px;}
+
+  .contact-grid{display:grid; grid-template-columns:1fr 1.3fr; gap:20px;}
+  @media (max-width:760px){ .contact-grid{grid-template-columns:1fr;} }
+
+  .contact-info, .contact-form{
+    background:var(--paper); border-radius:28px; padding:40px 34px;
+    box-shadow:0 2px 0 var(--line), 0 16px 36px rgba(43,32,19,0.06);
+  }
+  .contact-info h2{font-size:1.5rem; margin-bottom:24px;}
+  .info-block{margin-bottom:26px;}
+  .info-block:last-child{margin-bottom:0;}
+  .info-block .label{display:block; margin-bottom:8px;}
+  .info-block a, .info-block p{color:var(--ink); text-decoration:none; font-size:0.98rem; font-weight:600;}
+  .info-block a:hover{color:var(--coral-dark);}
+  .socials{display:flex; gap:12px; margin-top:4px;}
+  .socials a{font-weight:700; font-size:0.85rem; color:var(--teal-dark); border:1.5px solid var(--teal); padding:8px 16px; border-radius:20px;}
+  .socials a:hover{background:var(--teal); color:#fff;}
+
+  .contact-form h2{font-size:1.5rem; margin-bottom:8px;}
+  .contact-form > p{color:var(--muted); font-size:0.9rem; margin-bottom:28px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block; font-size:0.72rem; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:var(--coral-dark); margin-bottom:8px;}
+  .field input, .field select, .field textarea{
+    width:100%; background:var(--cream); border:1.5px solid var(--line); color:var(--ink);
+    padding:12px 14px; font-family:'Nunito Sans', sans-serif; font-size:0.95rem; border-radius:14px; outline:none; transition:border-color 0.2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--coral);}
+  .field textarea{resize:vertical; min-height:120px;}
+  .row-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:480px){ .row-2{grid-template-columns:1fr;} }
+  .btn-submit{
+    width:100%; padding:15px; background:var(--coral); color:#fff; border:none;
+    font-family:'Nunito Sans', sans-serif; font-weight:800; font-size:0.92rem;
+    border-radius:100px; cursor:pointer; transition:all 0.22s ease;
+  }
+  .btn-submit:hover{background:var(--coral-dark); transform:translateY(-2px);}
+  .form-note{color:var(--muted); font-size:0.78rem; margin-top:14px; text-align:center;}
+
+  footer{border-top:1px solid var(--line); padding:54px 24px 34px;}
+  .footer-wrap{max-width:1180px; margin:0 auto; display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between;}
+  .footer-brand{max-width:320px;}
+  .footer-brand .brand{margin-bottom:12px;}
+  .footer-brand p{color:var(--muted); font-size:0.85rem;}
+  .footer-col h4{font-weight:800; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--coral-dark); margin-bottom:14px;}
+  .footer-col a{display:block; color:var(--muted); text-decoration:none; font-size:0.9rem; margin-bottom:8px; transition:color 0.2s ease;}
+  .footer-col a:hover{color:var(--ink);}
+  .legal{max-width:1180px; margin:40px auto 0; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:0.78rem; text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand">
+      <img src="logo-mark.png" alt="Logo CS Animations">
+      <span>CS Animations</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li>
+      <a href="the-fine-allies.html">The Fine Allies</a></li>
+        <li><a href="alchimie.html">Alchimie</a></li>
+        <li><a href="location-materiel.html">Location Matériel</a></li>
+        <li><a href="contact.html" class="current">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="label">Contact</span>
+    <h1>Parlons de votre projet</h1>
+    <p>Programmation d'un groupe, location de matériel, question générale : on vous répond rapidement.</p>
+  </div>
+</section>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="#fff8ee" d="M0,28 C240,60 480,0 720,20 C960,40 1200,60 1440,28 L1440,60 L0,60 Z"/></svg>
+
+<section>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Coordonnées</h2>
+        <div class="info-block">
+          <span class="label">Email</span>
+          <a href="mailto:contact@csanimations.fr">contact@csanimations.fr</a>
+        </div>
+        <div class="info-block">
+          <span class="label">Téléphone</span>
+          <a href="tel:+33631949653">06 31 94 96 53</a>
+        </div>
+        <div class="info-block">
+          <span class="label">Adresse</span>
+          <p>24130 Prigonrieux, Dordogne</p>
+        </div>
+        <div class="info-block">
+          <span class="label">Réseaux</span>
+          <div class="socials">
+            <a href="https://www.facebook.com/profile.php?id=61550186392959" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com/csanimations24/" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+        <div class="info-block">
+          <span class="label">Association</span>
+          <p>Loi 1901 · RNA W241006994<br>SIRET 930 390 935 00011</p>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h2>Écrivez-nous</h2>
+        <p>Le formulaire ouvre votre messagerie avec le message pré-rempli, prêt à envoyer.</p>
+        <form id="contact-form">
+          <div class="row-2">
+            <div class="field">
+              <label for="name">Nom</label>
+              <input type="text" id="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="subject">Sujet</label>
+            <select id="subject">
+              <option value="Programmer un groupe">Programmer un groupe</option>
+              <option value="Location de matériel">Location de matériel</option>
+              <option value="Autre demande">Autre demande</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Envoyer le message</button>
+          <p class="form-note">Vous pouvez aussi écrire directement à contact@csanimations.fr</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <a href="index.html" class="brand">
+        <img src="logo-mark.png" alt="Logo CS Animations">
+        <span>CS Animations</span>
+      </a>
+      <p>Au service des groupes et artistes locaux en Dordogne. Association loi 1901 basée à Prigonrieux.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="the-fine-allies.html">The Fine Allies</a>
+      <a href="alchimie.html">Alchimie</a>
+      <a href="location-materiel.html">Location Matériel</a>
+    </div>
+    <div class="footer-col">
+      <h4>Suivez-nous</h4>
+      <a href="https://www.facebook.com/profile.php?id=61550186392959" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/csanimations24/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:contact@csanimations.fr">contact@csanimations.fr</a>
+      <a href="tel:+33631949653">06 31 94 96 53</a>
+    </div>
+  </div>
+  <p class="legal">Association loi 1901 · RNA W241006994 · SIRET 930 390 935 00011 · 24130 Prigonrieux — © 2026 CS Animations</p>
+</footer>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    const body = `Nom : ${name}\nEmail : ${email}\n\n${message}`;
+    window.location.href = `mailto:contact@csanimations.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+
+<script>
+(function(){
+  var sid=null; try{ sid=sessionStorage.getItem('csa_visit_sid'); if(!sid){ sid=Date.now().toString(36)+Math.random().toString(36).slice(2); sessionStorage.setItem('csa_visit_sid',sid); } }catch(e){}
+  fetch("https://slp-api.raspy-silence-d4c7.workers.dev/api/track-visit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({artist_slug:"contact",session_id:sid,site:"csa",ref:document.referrer})}).catch(function(){});
+})();
+</script>
+</body>
+</html>
