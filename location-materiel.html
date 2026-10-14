@@ -418,7 +418,7 @@
     if (!list.length){ grid.innerHTML = '<p style="color:var(--muted);">Aucun article dans cette catégorie pour le moment.</p>'; return; }
     grid.innerHTML = list.map(i => `
       <div class="card">
-        <div class="card-img">${i.image ? `<img src="${i.image}" alt="${i.name}">` : 'Photo à venir'}</div>
+        <div class="card-img">${i.image ? `<img src="${i.image}" alt="${i.name}" loading="lazy" onerror="this.parentNode.textContent='Photo à venir'">` : 'Photo à venir'}</div>
         <span class="cat-tag">${i.category === 'son' ? 'Son' : i.category === 'lumiere' ? 'Lumière' : i.category === 'effets' ? 'Effets' : 'Vidéo'}</span>
         <h3>${i.name}</h3>
         <p class="desc">${i.description || ''}</p>
