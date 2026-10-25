@@ -364,6 +364,11 @@
       </div>
     </div>
     <div class="field">
+      <label>Code postal du lieu de l'événement *</label>
+      <input type="text" id="fZip" inputmode="numeric" maxlength="5" placeholder="ex. 24130">
+      <small style="color:var(--muted); font-size:0.78rem;">Location uniquement en Dordogne (24), Gironde (33) et Lot-et-Garonne (47).</small>
+    </div>
+    <div class="field">
       <label>Message (événement, lieu…)</label>
       <textarea id="fNotes" rows="3"></textarea>
     </div>
@@ -391,6 +396,10 @@
       <a href="the-fine-allies.html">The Fine Allies</a>
       <a href="alchimie.html">Alchimie</a>
       <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Partenaire</h4>
+      <a href="https://soundlightprod.store" target="_blank" rel="noopener">Boutique SLP</a>
     </div>
     <div class="footer-col">
       <h4>Suivez-nous</h4>
@@ -463,6 +472,7 @@
     document.getElementById('fEmail').value = '';
     document.getElementById('fPhone').value = '';
     document.getElementById('fNotes').value = '';
+    document.getElementById('fZip').value = '';
     document.getElementById('acceptCgl').checked = false;
     document.getElementById('availStatus').style.display = 'none';
     document.getElementById('modalMsg').textContent = '';
@@ -518,13 +528,25 @@
     const name = document.getElementById('fName').value.trim();
     const email = document.getElementById('fEmail').value.trim();
     const phone = document.getElementById('fPhone').value.trim();
-    const notes = document.getElementById('fNotes').value.trim();
+    const zip = document.getElementById('fZip').value.trim();
+    const notesRaw = document.getElementById('fNotes').value.trim();
 
     if (!start || !end || !name || !email){
       msgEl.textContent = 'Merci de remplir les dates, le nom et l\'email.';
       msgEl.className = 'modal-msg error';
       return;
     }
+    if (!/^\d{5}$/.test(zip)){
+      msgEl.textContent = 'Merci d\'indiquer le code postal (5 chiffres) du lieu de l\'événement.';
+      msgEl.className = 'modal-msg error';
+      return;
+    }
+    if (!['24','33','47'].includes(zip.slice(0,2))){
+      msgEl.textContent = 'Désolé, la location n\'est possible qu\'en Dordogne, Gironde et Lot-et-Garonne.';
+      msgEl.className = 'modal-msg error';
+      return;
+    }
+    const notes = 'Code postal : ' + zip + (notesRaw ? '\n' + notesRaw : '');
     msgEl.textContent = 'Envoi en cours…';
     msgEl.className = 'modal-msg';
     try {
